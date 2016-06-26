@@ -4,10 +4,8 @@
   angular.module("app").controller("peopleCtrl", function($scope,$http){
     $scope.setup = function(){
       $http.get("/api/v1/people.json").then(function(response){
-        // console.log(response.data);
         $scope.people = response.data;
       });
-
     };
 
     $scope.toggleBioVisible = function(person){
@@ -15,16 +13,19 @@
     };
 
     $scope.addPerson = function(personName, personBio){
-      if (personName && personBio){
-        var newPerson = {
-          name: personName,
-          bio: personBio
-        };
+      var newPerson = {
+        name: personName,
+        bio: personBio
+      };
 
-        $scope.people.push(newPerson);
+      $http.post('/api/v1/people.json', newPerson).then(function(response){
+        $scope.people.push(response.data);
         $scope.newName = '';
         $scope.newBio = '';
-      }
+        $scope.errors = [];
+      }, function(error){
+        $scope.errors = error.data.errors;
+      });
     };
 
     $scope.deletePerson = function(index){

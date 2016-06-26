@@ -11,6 +11,7 @@
     </div>
 
     <div class="form">
+      <h3 ng-repeat="error in errors">{{ error }}</h3>
       <h4>Name: <input type="text" ng-model="newName"></h4>
       <h4>Bio: <input type="text" ng-model="newBio"></h4>
       <button ng-click="addPerson(newName, newBio)">Add Person</button>
