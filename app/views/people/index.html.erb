@@ -1,5 +1,5 @@
 <div ng-app="app">
-  <div ng-controller="peopleCtrl">
+  <div ng-controller="peopleCtrl" ng-init="setup()">
     {{ 1 + 1 }}
     
     <div ng-repeat="person in people track by $index">
