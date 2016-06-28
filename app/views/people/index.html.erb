@@ -1,10 +1,20 @@
 <div ng-app="app">
   <div ng-controller="peopleCtrl" ng-init="setup()">
     {{ 1 + 1 }}
+
+    <div></div>
+
+    <datalist id="names">
+      <option ng-repeat="person in people">{{ person.name }}</option>
+    </datalist>
+
+    <input ng-model="nameFilter" list="names">
+    <button ng-click="setOrderBy('name')">Order by Name</button>
+    <button ng-click="setOrderBy('bio')">Order by Bio</button>
     
-    <div ng-repeat="person in people track by $index">
+    <div ng-repeat="person in people | filter:{name: nameFilter} | orderBy:orderAttribute:descending track by $index">
       <h2 ng-click="toggleBioVisible(person)">{{ person.name }}</h2>
-      <div ng-class="{strike: person.bioVisible}">
+      <div ng-if="person.bioVisible">
         <p>{{ person.bio }}</p>
         <p ng-click="deletePerson($index)">Delete Person</p>
       </div>

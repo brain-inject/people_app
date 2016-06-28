@@ -2,3 +2,21 @@
 .strike{
   text-decoration: line-through;
 }
+
+.ng-enter, .ng-move{
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+.ng-leave{
+  -webkit-animation: rotateUpLeft 4s;
+  -webkit-animation: flipOutX 4s;
+  -moz-animation: rotateUpLeft 4s;
+  -moz-animation: flipOutX 4s;
+  -o-animation: rotateUpLeft 4s;
+  -o-animation: flipOutX 4s;
+  animation: rotateUpLeft 4s;
+  animation: flipOutX 4s;
+}
